@@ -1,17 +1,19 @@
-package rules;
+package com.example
+
+unit RuleUnit
 
 import com.example.Person;
 
 rule "Check if minor"
     when
-        $person : Person(age < 18)
+        $person : /personne[age < 18]
     then
         System.out.println($person.getName() + " is a minor.");
 end
 
 rule "Check if adult"
     when
-        $person : Person(age >= 18)
+        $person : /personne[age >= 18]
     then
         System.out.println($person.getName() + " is an adult.");
 end
