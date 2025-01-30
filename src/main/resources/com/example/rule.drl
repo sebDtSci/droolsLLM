@@ -1,7 +1,7 @@
 package com.example
 
-// unit RuleUnit
-unit com.example.RuleUnit;
+unit RuleUnit
+// unit com.example.RuleUnit;
 
 import com.example.Person;
 import com.example.Res;

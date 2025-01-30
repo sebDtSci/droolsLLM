@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_YwuS8MCwED2NEII1G3OTog" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
+<bpmn2:definitions xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" xmlns:xsi="xsi" id="_6QwkkMEzED2hyt4LPVmcig" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
   <bpmn2:itemDefinition id="_personneItem" structureRef="com.example.Person"/>
-  <bpmn2:itemDefinition id="_resItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="_resItem" structureRef="com.example.Res"/>
   <bpmn2:itemDefinition id="__3248C0D3-9CDE-4D76-AB3B-24C5AD469803_fileNameInputXItem" structureRef="java.lang.String"/>
   <bpmn2:itemDefinition id="__3248C0D3-9CDE-4D76-AB3B-24C5AD469803_namespaceInputXItem" structureRef="java.lang.String"/>
   <bpmn2:itemDefinition id="__3248C0D3-9CDE-4D76-AB3B-24C5AD469803_modelInputXItem" structureRef="java.lang.String"/>
   <bpmn2:itemDefinition id="__3248C0D3-9CDE-4D76-AB3B-24C5AD469803_decisionInputXItem" structureRef="java.lang.String"/>
   <bpmn2:itemDefinition id="__3248C0D3-9CDE-4D76-AB3B-24C5AD469803_personneInputXItem" structureRef="com.example.Person"/>
-  <bpmn2:itemDefinition id="__3248C0D3-9CDE-4D76-AB3B-24C5AD469803_resOutputXItem" structureRef="Res"/>
-  <bpmn2:collaboration id="_669060AD-B351-40DE-ACD2-0B70629DD258" name="Default Collaboration">
-    <bpmn2:participant id="_6C5EA8AB-0760-4E06-ABE9-610D09B4002D" name="Pool Participant" processRef="ruleflow"/>
+  <bpmn2:itemDefinition id="__3248C0D3-9CDE-4D76-AB3B-24C5AD469803_resInputXItem" structureRef="com.example.Res"/>
+  <bpmn2:itemDefinition id="__3248C0D3-9CDE-4D76-AB3B-24C5AD469803_resOutputXItem" structureRef="com.example.Res"/>
+  <bpmn2:collaboration id="_356A7476-9771-4159-9D04-56BC98D161C0" name="Default Collaboration">
+    <bpmn2:participant id="_18C6F275-DE06-430C-9E65-60B192591B70" name="Pool Participant" processRef="ruleflow"/>
   </bpmn2:collaboration>
   <bpmn2:process id="ruleflow" drools:packageName="com.example" drools:version="1.0" drools:adHoc="false" name="ruleflow" isExecutable="true" processType="Public">
     <bpmn2:extensionElements>
       <drools:import name="com.example.Person"/>
+      <drools:import name="com.example.Res"/>
     </bpmn2:extensionElements>
     <bpmn2:property id="personne" itemSubjectRef="_personneItem" name="personne">
       <bpmn2:extensionElements>
@@ -22,18 +24,15 @@
         </drools:metaData>
       </bpmn2:extensionElements>
     </bpmn2:property>
-    <bpmn2:property id="res" itemSubjectRef="_resItem" name="res"/>
-    <bpmn2:sequenceFlow id="sequenceFlow_OUL39A" sourceRef="task_3xGKxQ" targetRef="_14DFF073-96F2-4990-AE24-48488F69FF30"/>
-    <bpmn2:sequenceFlow id="_28236E51-FA92-4F3B-81E4-8B99ED3E03A4" name="Task" sourceRef="_3248C0D3-9CDE-4D76-AB3B-24C5AD469803" targetRef="task_3xGKxQ">
+    <bpmn2:property id="res" itemSubjectRef="_resItem" name="res">
       <bpmn2:extensionElements>
-        <drools:metaData name="isAutoConnection.target">
-          <drools:metaValue><![CDATA[true]]></drools:metaValue>
-        </drools:metaData>
-        <drools:metaData name="elementname">
-          <drools:metaValue><![CDATA[Task]]></drools:metaValue>
+        <drools:metaData name="customTags">
+          <drools:metaValue><![CDATA[output]]></drools:metaValue>
         </drools:metaData>
       </bpmn2:extensionElements>
-    </bpmn2:sequenceFlow>
+    </bpmn2:property>
+    <bpmn2:sequenceFlow id="_28236E51-FA92-4F3B-81E4-8B99ED3E03A4" sourceRef="_3248C0D3-9CDE-4D76-AB3B-24C5AD469803" targetRef="_49D9C814-B454-40BF-AC6C-80C1F2215073"/>
+    <bpmn2:sequenceFlow id="_2CBDA966-01D8-4A55-90C6-3F3A085C3C9B" sourceRef="_49D9C814-B454-40BF-AC6C-80C1F2215073" targetRef="_14DFF073-96F2-4990-AE24-48488F69FF30"/>
     <bpmn2:sequenceFlow id="sequenceFlow_EC2UvA" sourceRef="task_Oub1bw" targetRef="_3248C0D3-9CDE-4D76-AB3B-24C5AD469803"/>
     <bpmn2:sequenceFlow id="_983161A6-67C1-42A4-9EBA-270FA6B43FC2" sourceRef="_CC6A4EE5-A8F6-424C-B578-388A305C5E8B" targetRef="task_Oub1bw">
       <bpmn2:extensionElements>
@@ -42,6 +41,18 @@
         </drools:metaData>
       </bpmn2:extensionElements>
     </bpmn2:sequenceFlow>
+    <bpmn2:scriptTask id="_49D9C814-B454-40BF-AC6C-80C1F2215073" name="Finit" scriptFormat="http://www.java.com/java">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Finit]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_28236E51-FA92-4F3B-81E4-8B99ED3E03A4</bpmn2:incoming>
+      <bpmn2:outgoing>_2CBDA966-01D8-4A55-90C6-3F3A085C3C9B</bpmn2:outgoing>
+      <bpmn2:script>com.example.Util.debug("--------- The ex(a)mple ruleflow : Finit ---------");
+com.example.Util.debug(personne.getName() + " age " + personne.getAge() + " est majeur " + res.getMajor());
+</bpmn2:script>
+    </bpmn2:scriptTask>
     <bpmn2:businessRuleTask id="_3248C0D3-9CDE-4D76-AB3B-24C5AD469803" drools:ruleFlowGroup="unit:com.example.RuleUnit" name="Task" implementation="http://www.jboss.org/drools/rule">
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
@@ -52,9 +63,11 @@
       <bpmn2:outgoing>_28236E51-FA92-4F3B-81E4-8B99ED3E03A4</bpmn2:outgoing>
       <bpmn2:ioSpecification>
         <bpmn2:dataInput id="_3248C0D3-9CDE-4D76-AB3B-24C5AD469803_personneInputX" drools:dtype="com.example.Person" itemSubjectRef="__3248C0D3-9CDE-4D76-AB3B-24C5AD469803_personneInputXItem" name="personne"/>
-        <bpmn2:dataOutput id="_3248C0D3-9CDE-4D76-AB3B-24C5AD469803_resOutputX" drools:dtype="Res" itemSubjectRef="__3248C0D3-9CDE-4D76-AB3B-24C5AD469803_resOutputXItem" name="res"/>
+        <bpmn2:dataInput id="_3248C0D3-9CDE-4D76-AB3B-24C5AD469803_resInputX" drools:dtype="com.example.Res" itemSubjectRef="__3248C0D3-9CDE-4D76-AB3B-24C5AD469803_resInputXItem" name="res"/>
+        <bpmn2:dataOutput id="_3248C0D3-9CDE-4D76-AB3B-24C5AD469803_resOutputX" drools:dtype="com.example.Res" itemSubjectRef="__3248C0D3-9CDE-4D76-AB3B-24C5AD469803_resOutputXItem" name="res"/>
         <bpmn2:inputSet>
           <bpmn2:dataInputRefs>_3248C0D3-9CDE-4D76-AB3B-24C5AD469803_personneInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_3248C0D3-9CDE-4D76-AB3B-24C5AD469803_resInputX</bpmn2:dataInputRefs>
         </bpmn2:inputSet>
         <bpmn2:outputSet>
           <bpmn2:dataOutputRefs>_3248C0D3-9CDE-4D76-AB3B-24C5AD469803_resOutputX</bpmn2:dataOutputRefs>
@@ -64,32 +77,21 @@
         <bpmn2:sourceRef>personne</bpmn2:sourceRef>
         <bpmn2:targetRef>_3248C0D3-9CDE-4D76-AB3B-24C5AD469803_personneInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation>
+        <bpmn2:sourceRef>res</bpmn2:sourceRef>
+        <bpmn2:targetRef>_3248C0D3-9CDE-4D76-AB3B-24C5AD469803_resInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
       <bpmn2:dataOutputAssociation>
         <bpmn2:sourceRef>_3248C0D3-9CDE-4D76-AB3B-24C5AD469803_resOutputX</bpmn2:sourceRef>
-        <bpmn2:assignment>
-          <bpmn2:from xsi:type="bpmn2:tFormalExpression"><![CDATA[_3248C0D3-9CDE-4D76-AB3B-24C5AD469803_resOutputX]]></bpmn2:from>
-          <bpmn2:to xsi:type="bpmn2:tFormalExpression"><![CDATA[res]]></bpmn2:to>
-        </bpmn2:assignment>
+        <bpmn2:targetRef>res</bpmn2:targetRef>
       </bpmn2:dataOutputAssociation>
     </bpmn2:businessRuleTask>
     <bpmn2:endEvent id="_14DFF073-96F2-4990-AE24-48488F69FF30">
-      <bpmn2:incoming>sequenceFlow_OUL39A</bpmn2:incoming>
+      <bpmn2:incoming>_2CBDA966-01D8-4A55-90C6-3F3A085C3C9B</bpmn2:incoming>
     </bpmn2:endEvent>
     <bpmn2:startEvent id="_CC6A4EE5-A8F6-424C-B578-388A305C5E8B">
       <bpmn2:outgoing>_983161A6-67C1-42A4-9EBA-270FA6B43FC2</bpmn2:outgoing>
     </bpmn2:startEvent>
-    <bpmn2:scriptTask id="task_3xGKxQ" name="exit" scriptFormat="http://www.java.com/java">
-      <bpmn2:extensionElements>
-        <drools:metaData name="elementname">
-          <drools:metaValue><![CDATA[exit]]></drools:metaValue>
-        </drools:metaData>
-      </bpmn2:extensionElements>
-      <bpmn2:incoming>_28236E51-FA92-4F3B-81E4-8B99ED3E03A4</bpmn2:incoming>
-      <bpmn2:outgoing>sequenceFlow_OUL39A</bpmn2:outgoing>
-      <bpmn2:script>com.example.Util.debug("--------- The example ruleflow : Finit ---------");
-com.example.Res res = (com.example.res)kcontext.getVariable("res");
-res.getMajor();</bpmn2:script>
-    </bpmn2:scriptTask>
     <bpmn2:scriptTask id="task_Oub1bw" name="init" scriptFormat="http://www.java.com/java">
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
@@ -99,43 +101,42 @@ res.getMajor();</bpmn2:script>
       <bpmn2:incoming>_983161A6-67C1-42A4-9EBA-270FA6B43FC2</bpmn2:incoming>
       <bpmn2:outgoing>sequenceFlow_EC2UvA</bpmn2:outgoing>
       <bpmn2:script>com.example.Util.debug("--------- The ex(a)mple ruleflow : Init ---------");
-com.example.Res res = new com.example.Res();
-kcontext.setVariable("res", res);
-kcontext.setVariable("major", res.getMajor());</bpmn2:script>
+// ici ne pas utiliser res comme nouvelle variable car dans la classe RuleflowProcess généré, Kogito en génére une avec ce nom!
+kcontext.setVariable("res", new com.example.Res());</bpmn2:script>
     </bpmn2:scriptTask>
   </bpmn2:process>
   <bpmndi:BPMNDiagram>
     <bpmndi:BPMNPlane bpmnElement="ruleflow">
       <bpmndi:BPMNShape id="shape_task_Oub1bw" bpmnElement="task_Oub1bw">
-        <dc:Bounds height="50" width="110" x="537" y="222"/>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape_task_3xGKxQ" bpmnElement="task_3xGKxQ">
-        <dc:Bounds height="50" width="110" x="941" y="222"/>
+        <dc:Bounds height="50" width="110" x="438" y="365"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape__CC6A4EE5-A8F6-424C-B578-388A305C5E8B" bpmnElement="_CC6A4EE5-A8F6-424C-B578-388A305C5E8B">
-        <dc:Bounds height="56" width="56" x="432" y="229"/>
+        <dc:Bounds height="56" width="56" x="318" y="147"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape__14DFF073-96F2-4990-AE24-48488F69FF30" bpmnElement="_14DFF073-96F2-4990-AE24-48488F69FF30">
-        <dc:Bounds height="56" width="56" x="1097" y="229"/>
+        <dc:Bounds height="56" width="56" x="1236" y="167"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape__3248C0D3-9CDE-4D76-AB3B-24C5AD469803" bpmnElement="_3248C0D3-9CDE-4D76-AB3B-24C5AD469803">
-        <dc:Bounds height="102" width="154" x="708" y="196"/>
+        <dc:Bounds height="102" width="154" x="679" y="180"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__49D9C814-B454-40BF-AC6C-80C1F2215073" bpmnElement="_49D9C814-B454-40BF-AC6C-80C1F2215073">
+        <dc:Bounds height="102" width="154" x="964" y="308"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="edge_shape__CC6A4EE5-A8F6-424C-B578-388A305C5E8B_to_shape_task_Oub1bw" bpmnElement="_983161A6-67C1-42A4-9EBA-270FA6B43FC2">
-        <di:waypoint x="468" y="247"/>
-        <di:waypoint x="537" y="247"/>
+        <di:waypoint x="354" y="165"/>
+        <di:waypoint x="438" y="390"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_shape_task_Oub1bw_to_shape__3248C0D3-9CDE-4D76-AB3B-24C5AD469803" bpmnElement="sequenceFlow_EC2UvA">
-        <di:waypoint x="647" y="247"/>
-        <di:waypoint x="708" y="247"/>
+        <di:waypoint x="548" y="390"/>
+        <di:waypoint x="679" y="231"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="edge_shape__3248C0D3-9CDE-4D76-AB3B-24C5AD469803_to_shape_task_3xGKxQ" bpmnElement="_28236E51-FA92-4F3B-81E4-8B99ED3E03A4">
-        <di:waypoint x="862" y="247"/>
-        <di:waypoint x="941" y="247"/>
+      <bpmndi:BPMNEdge id="edge_shape__49D9C814-B454-40BF-AC6C-80C1F2215073_to_shape__14DFF073-96F2-4990-AE24-48488F69FF30" bpmnElement="_2CBDA966-01D8-4A55-90C6-3F3A085C3C9B">
+        <di:waypoint x="1041" y="359"/>
+        <di:waypoint x="1236" y="185"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="edge_shape_task_3xGKxQ_to_shape__14DFF073-96F2-4990-AE24-48488F69FF30" bpmnElement="sequenceFlow_OUL39A">
-        <di:waypoint x="1051" y="247"/>
-        <di:waypoint x="1097" y="247"/>
+      <bpmndi:BPMNEdge id="edge_shape__3248C0D3-9CDE-4D76-AB3B-24C5AD469803_to_shape__49D9C814-B454-40BF-AC6C-80C1F2215073" bpmnElement="_28236E51-FA92-4F3B-81E4-8B99ED3E03A4">
+        <di:waypoint x="833" y="231"/>
+        <di:waypoint x="1041" y="359"/>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
@@ -145,26 +146,6 @@ kcontext.setVariable("major", res.getMajor());</bpmn2:script>
         <bpsim:Scenario id="default" name="Simulationscenario">
           <bpsim:ScenarioParameters/>
           <bpsim:ElementParameters elementRef="task_Oub1bw">
-            <bpsim:TimeParameters>
-              <bpsim:ProcessingTime>
-                <bpsim:NormalDistribution mean="0" standardDeviation="0"/>
-              </bpsim:ProcessingTime>
-            </bpsim:TimeParameters>
-            <bpsim:ResourceParameters>
-              <bpsim:Availability>
-                <bpsim:FloatingParameter value="0"/>
-              </bpsim:Availability>
-              <bpsim:Quantity>
-                <bpsim:FloatingParameter value="0"/>
-              </bpsim:Quantity>
-            </bpsim:ResourceParameters>
-            <bpsim:CostParameters>
-              <bpsim:UnitCost>
-                <bpsim:FloatingParameter value="0"/>
-              </bpsim:UnitCost>
-            </bpsim:CostParameters>
-          </bpsim:ElementParameters>
-          <bpsim:ElementParameters elementRef="task_3xGKxQ">
             <bpsim:TimeParameters>
               <bpsim:ProcessingTime>
                 <bpsim:NormalDistribution mean="0" standardDeviation="0"/>
@@ -211,10 +192,30 @@ kcontext.setVariable("major", res.getMajor());</bpmn2:script>
               </bpsim:UnitCost>
             </bpsim:CostParameters>
           </bpsim:ElementParameters>
+          <bpsim:ElementParameters elementRef="_49D9C814-B454-40BF-AC6C-80C1F2215073">
+            <bpsim:TimeParameters>
+              <bpsim:ProcessingTime>
+                <bpsim:NormalDistribution mean="0" standardDeviation="0"/>
+              </bpsim:ProcessingTime>
+            </bpsim:TimeParameters>
+            <bpsim:ResourceParameters>
+              <bpsim:Availability>
+                <bpsim:FloatingParameter value="0"/>
+              </bpsim:Availability>
+              <bpsim:Quantity>
+                <bpsim:FloatingParameter value="0"/>
+              </bpsim:Quantity>
+            </bpsim:ResourceParameters>
+            <bpsim:CostParameters>
+              <bpsim:UnitCost>
+                <bpsim:FloatingParameter value="0"/>
+              </bpsim:UnitCost>
+            </bpsim:CostParameters>
+          </bpsim:ElementParameters>
         </bpsim:Scenario>
       </bpsim:BPSimData>
     </bpmn2:extensionElements>
-    <bpmn2:source>_YwuS8MCwED2NEII1G3OTog</bpmn2:source>
-    <bpmn2:target>_YwuS8MCwED2NEII1G3OTog</bpmn2:target>
+    <bpmn2:source>_6QwkkMEzED2hyt4LPVmcig</bpmn2:source>
+    <bpmn2:target>_6QwkkMEzED2hyt4LPVmcig</bpmn2:target>
   </bpmn2:relationship>
 </bpmn2:definitions>
