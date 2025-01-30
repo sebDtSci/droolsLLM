@@ -23,3 +23,19 @@ rule "Check if adult"
         System.out.println($person.getName() + " is an adult.");
         $res.setMajor(true);
 end
+
+rule "claims"
+    when
+        $res : /res
+        $person : /personne[address str[startsWith] "75012", disaster contains "Incendie" || disaster contains "Inondation"]
+    then
+        $res.setMontantIndemnisation($person.getMaisonPrice() * 0.6);
+end
+
+rule "claims2"
+    when
+        $res : /res
+        $person : /personne[address str[startsWith] "34000", disaster contains "Incendie" || disaster contains "Inondation"]
+    then
+        $res.setMontantIndemnisation($person.getMaisonPrice() * 0.4);
+end
