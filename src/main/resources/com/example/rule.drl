@@ -27,7 +27,7 @@ end
 rule "claims"
     when
         $res : /res
-        $person : /personne[address str[startsWith] "75012", disaster contains "Incendie" || disaster contains "Inondation"]
+        $person : /personne[address str[startsWith] "75000", disaster contains "Incendie" || disaster contains "Inondation"]
     then
         $res.setMontantIndemnisation($person.getMaisonPrice() * 0.6);
 end
